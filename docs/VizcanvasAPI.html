@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.4">
+<title>VizcanvasAPI (prueba) | Tutorial</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight.b050d634.css">
+<link rel="preload" as="style" href="./_observablehq/stdlib/inputs.f7bf0e12.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,near-midnight.b050d634.css">
+<link rel="stylesheet" type="text/css" href="./_observablehq/stdlib/inputs.f7bf0e12.css">
+<link rel="modulepreload" href="./_observablehq/client.0f01a480.js">
+<link rel="modulepreload" href="./_observablehq/runtime.607a8173.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.277aeab8.js">
+<link rel="modulepreload" href="./_import/vizcanvas.575a1b33.js">
+<link rel="modulepreload" href="./_observablehq/stdlib/inputs.3feeafb9.js">
+<link rel="modulepreload" href="./_npm/htl@1.0.0/87d6f6ef.js">
+<link rel="modulepreload" href="./_npm/isoformat@0.2.1/18cbf477.js">
+<link rel="icon" href="./_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import {define} from "./_observablehq/client.0f01a480.js";
+
+define({id: "23e32c32", inputs: ["Inputs"], outputs: ["getTables","query","tablas","resultado"], body: async (Inputs) => {
+const {getTables, query} = await import("./_import/vizcanvas.575a1b33.js");
+
+const tablas = await getTables();
+const resultado = await query("SELECT * FROM lenguas_indigenas LIMIT 10");
+
+Inputs.table(resultado.rows)
+return {getTables,query,tablas,resultado};
+}});
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="./">Tutorial</a></li>
+  </ol>
+  <ol>
+    <li class="observablehq-link"><a href="./Cards">Directorio de fuentes (Cards)</a></li>
+    <li class="observablehq-link"><a href="./prueba-api">VizcanvasAPI (prueba)</a></li>
+    <li class="observablehq-link"><a href="./prueba-binance">Prueba — Polling en tiempo real con Binance</a></li>
+    <li class="observablehq-link"><a href="./prueba-restcountries">REST Countries API (prueba)</a></li>
+    <li class="observablehq-link"><a href="./prueba-volumenes">Prueba — Volúmenes grandes de datos</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./VizcanvasAPI">VizcanvasAPI (prueba)</a></li>
+  </ol>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="vizcanvas-api-prueba" tabindex="-1"><a class="observablehq-header-anchor" href="#vizcanvas-api-prueba">Vizcanvas API (prueba)</a></h1>
+<div class="observablehq observablehq--block"><!--:23e32c32:--></div>
+<p>/*
+import { login, getTables, query } from "./vizcanvas.js";</p>
+<p>// Primero haces login
+const token = await login("tu_usuario", "tu_contraseña");</p>
+<p>// Luego pasas el token a cada función
+const tablas = await getTables(token);
+const resultado = await query("SELECT * FROM lenguas_indigenas LIMIT 10", token);</p>
+<p>Inputs.table(resultado.rows)
+*/</p>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./prueba-volumenes"><span>Prueba — Volúmenes grandes de datos</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2026-06-04T12:21:05">Jun 4, 2026</a>.</div>
+</footer>
+</div>
+</body>
+</html>

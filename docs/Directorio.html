@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.4">
+<title>Directorio de fuentes (Tabla) | Tutorial</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight.b050d634.css">
+<link rel="preload" as="style" href="./_observablehq/stdlib/inputs.f7bf0e12.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,near-midnight.b050d634.css">
+<link rel="stylesheet" type="text/css" href="./_observablehq/stdlib/inputs.f7bf0e12.css">
+<link rel="modulepreload" href="./_observablehq/client.0f01a480.js">
+<link rel="modulepreload" href="./_observablehq/runtime.607a8173.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.277aeab8.js">
+<link rel="modulepreload" href="./_npm/htl@1.0.0/87d6f6ef.js">
+<link rel="modulepreload" href="./_observablehq/stdlib/inputs.3feeafb9.js">
+<link rel="modulepreload" href="./_npm/d3-dsv@3.0.1/9cffc2bd.js">
+<link rel="modulepreload" href="./_npm/isoformat@0.2.1/18cbf477.js">
+<link rel="icon" href="./_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import {define} from "./_observablehq/client.0f01a480.js";
+import {registerFile} from "./_observablehq/stdlib.277aeab8.js";
+
+registerFile("./data/directorio.csv", {"name":"./data/directorio.csv","mimeType":"text/csv","path":"./_file/data/directorio.7b73f327.csv","lastModified":1780557204577,"size":23162});
+
+define({id: "7f766832", inputs: ["FileAttachment"], outputs: ["directorio"], body: (FileAttachment) => {
+const directorio = FileAttachment("./data/directorio.csv").csv({typed: true})
+return {directorio};
+}});
+
+define({id: "32b2ce84", inputs: ["view","Inputs","directorio"], outputs: ["busqueda"], body: (view,Inputs,directorio) => {
+const busqueda = view(Inputs.search(directorio, {
+  placeholder: "Buscar por nombre, contenido, institución..."
+}))
+return {busqueda};
+}});
+
+define({id: "2ff4e1f8", inputs: ["busqueda","view","Inputs"], outputs: ["temas","temaSeleccionado"], body: (busqueda,view,Inputs) => {
+const temas = ["Todos", ...new Set(
+  busqueda
+    .filter(d => d.Tema)
+    .flatMap(d => d.Tema.split(",").map(s => s.trim()))
+)]
+const temaSeleccionado = view(Inputs.select(temas, {label: "Tema"}))
+return {temas,temaSeleccionado};
+}});
+
+define({id: "039a343b", inputs: ["busqueda","temaSeleccionado","view","Inputs"], outputs: ["subtemas","subtemaSeleccionado"], body: (busqueda,temaSeleccionado,view,Inputs) => {
+const subtemas = ["Todos", ...new Set(
+  busqueda
+    .filter(d => d.Subtema && (temaSeleccionado === "Todos" || 
+      (d.Tema && d.Tema.split(",").map(s => s.trim()).includes(temaSeleccionado))))
+    .flatMap(d => d.Subtema.split(",").map(s => s.trim()))
+)]
+const subtemaSeleccionado = view(Inputs.select(subtemas, {label: "Subtema"}))
+return {subtemas,subtemaSeleccionado};
+}});
+
+define({id: "17d2a48e", inputs: ["busqueda","temaSeleccionado","subtemaSeleccionado"], outputs: ["datosFiltrados"], body: (busqueda,temaSeleccionado,subtemaSeleccionado) => {
+const datosFiltrados = busqueda
+  .filter(d => temaSeleccionado === "Todos" || 
+    (d.Tema && d.Tema.split(",").map(s => s.trim()).includes(temaSeleccionado)))
+  .filter(d => subtemaSeleccionado === "Todos" || 
+    (d.Subtema && d.Subtema.split(",").map(s => s.trim()).includes(subtemaSeleccionado)))
+return {datosFiltrados};
+}});
+
+define({id: "74f8d9fd", inputs: ["html","datosFiltrados","directorio","display"], body: async (html,datosFiltrados,directorio,display) => {
+display(await(
+html`<p class="contador">Mostrando <strong>${datosFiltrados.length}</strong> de <strong>${directorio.length}</strong> fuentes</p>`
+))
+}});
+
+define({id: "62d02906", inputs: ["Inputs","datosFiltrados","temaSeleccionado","display"], body: async (Inputs,datosFiltrados,temaSeleccionado,display) => {
+display(await(
+Inputs.table(datosFiltrados, {
+  rows: 30,
+  columns: temaSeleccionado === "Todos"
+    ? ["Nombre_de_la_fuente", "Tema", "Tipo_de_fuente", "Año_referencia", "Cont_inf_indigena", "URL"]
+    : ["Nombre_de_la_fuente", "Tipo_de_fuente", "Año_referencia", "Cont_inf_indigena", "URL"],
+  header: {
+    Nombre_de_la_fuente: "Fuente",
+    Tema: "Tema",
+    Tipo_de_fuente: "Tipo",
+    Año_referencia: "Año",
+    Cont_inf_indigena: "Contenido sobre población indígena",
+    URL: "Acceso"
+  },
+  width: {
+    Nombre_de_la_fuente: 220,
+    Tipo_de_fuente: 90,
+    Año_referencia: 60,
+    Cont_inf_indigena: 280,
+    URL: 110
+  },
+  format: {
+    Año_referencia: d => d != null ? String(d) : "",
+    URL: url => url ? Object.assign(document.createElement("a"), {
+      href: url,
+      textContent: "Ver fuente →",
+      target: "_blank"
+    }) : ""
+  }
+})
+))
+}});
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="./">Tutorial</a></li>
+  </ol>
+  <ol>
+    <li class="observablehq-link"><a href="./Cards">Directorio de fuentes (Cards)</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./Directorio">Directorio de fuentes (Tabla)</a></li>
+    <li class="observablehq-link"><a href="./Directorio_interactivo">Página de pruebas</a></li>
+    <li class="observablehq-link"><a href="./prueba-api">VizcanvasAPI (prueba)</a></li>
+    <li class="observablehq-link"><a href="./prueba-binance">Prueba — Polling en tiempo real con Binance</a></li>
+    <li class="observablehq-link"><a href="./prueba-restcountries">REST Countries API (prueba)</a></li>
+    <li class="observablehq-link"><a href="./prueba-volumenes">Prueba — Volúmenes grandes de datos</a></li>
+    <li class="observablehq-link"><a href="./VizcanvasAPI">VizcanvasAPI (prueba)</a></li>
+  </ol>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="directorio-de-fuentes-tabla" tabindex="-1"><a class="observablehq-header-anchor" href="#directorio-de-fuentes-tabla">Directorio de fuentes (Tabla)</a></h1>
+<div class="observablehq observablehq--block"><!--:7f766832:--></div>
+<div class="panel-filtros">
+<h3>Buscar y filtrar</h3>
+<div class="observablehq observablehq--block"><!--:32b2ce84:--></div>
+<div class="observablehq observablehq--block"><!--:2ff4e1f8:--></div>
+<div class="observablehq observablehq--block"><!--:039a343b:--></div>
+</div>
+<div class="observablehq observablehq--block"><!--:17d2a48e:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:74f8d9fd:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:62d02906:--></div>
+<style>
+  :root {
+    --theme-width-normal: 95%;
+    --theme-width-medium: 95%;
+  }
+
+  .panel-filtros {
+    background: var(--theme-background-alt);
+    border: 1px solid var(--theme-foreground-faintest);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .panel-filtros h3 {
+    margin: 0 0 1rem 0;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--theme-foreground-muted);
+  }
+
+  .contador {
+    font-size: 0.875rem;
+    color: var(--theme-foreground-muted);
+    margin: 0.75rem 0 0.25rem;
+  }
+</style></main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./Cards"><span>Directorio de fuentes (Cards)</span></a><a rel="next" href="./Directorio_interactivo"><span>Página de pruebas</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2026-06-04T12:11:15">Jun 4, 2026</a>.</div>
+</footer>
+</div>
+</body>
+</html>

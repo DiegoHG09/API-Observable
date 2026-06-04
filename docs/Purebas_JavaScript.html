@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.4">
+<title>Pruebas usando JavaScript | Tutorial</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight.b050d634.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,near-midnight.b050d634.css">
+<link rel="modulepreload" href="./_observablehq/client.0f01a480.js">
+<link rel="modulepreload" href="./_observablehq/runtime.607a8173.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.277aeab8.js">
+<link rel="modulepreload" href="./_npm/htl@1.0.0/87d6f6ef.js">
+<link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.17/a96a6bbb.js">
+<link rel="modulepreload" href="./_npm/d3@7.9.0/66d82917.js">
+<link rel="modulepreload" href="./_npm/isoformat@0.2.1/18cbf477.js">
+<link rel="modulepreload" href="./_npm/interval-tree-1d@1.0.4/53fe8176.js">
+<link rel="modulepreload" href="./_npm/d3-array@3.2.4/e93ca09f.js">
+<link rel="modulepreload" href="./_npm/d3-axis@3.0.0/0f2de24d.js">
+<link rel="modulepreload" href="./_npm/d3-brush@3.0.0/65eb105b.js">
+<link rel="modulepreload" href="./_npm/d3-chord@3.0.1/7ef8fb2e.js">
+<link rel="modulepreload" href="./_npm/d3-color@3.1.0/aeb57b94.js">
+<link rel="modulepreload" href="./_npm/d3-contour@4.0.2/1d2aed74.js">
+<link rel="modulepreload" href="./_npm/d3-delaunay@6.0.4/87adea64.js">
+<link rel="modulepreload" href="./_npm/d3-dispatch@3.0.1/9ba9c7f3.js">
+<link rel="modulepreload" href="./_npm/d3-drag@3.0.0/4202580c.js">
+<link rel="modulepreload" href="./_npm/d3-dsv@3.0.1/9cffc2bd.js">
+<link rel="modulepreload" href="./_npm/d3-ease@3.0.1/cdd7e898.js">
+<link rel="modulepreload" href="./_npm/d3-fetch@3.0.1/b4e2ad9a.js">
+<link rel="modulepreload" href="./_npm/d3-force@3.0.0/5e804d15.js">
+<link rel="modulepreload" href="./_npm/d3-format@3.1.2/3785bf2d.js">
+<link rel="modulepreload" href="./_npm/d3-geo@3.1.1/40599fb3.js">
+<link rel="modulepreload" href="./_npm/d3-hierarchy@3.1.2/e49e792c.js">
+<link rel="modulepreload" href="./_npm/d3-interpolate@3.0.1/8d1e5425.js">
+<link rel="modulepreload" href="./_npm/d3-path@3.1.0/20d3f133.js">
+<link rel="modulepreload" href="./_npm/d3-polygon@3.0.1/7553081f.js">
+<link rel="modulepreload" href="./_npm/d3-quadtree@3.0.1/0dfd751c.js">
+<link rel="modulepreload" href="./_npm/d3-random@3.0.1/3c90ee06.js">
+<link rel="modulepreload" href="./_npm/d3-scale@4.0.2/720b7f0a.js">
+<link rel="modulepreload" href="./_npm/d3-scale-chromatic@3.1.0/ba24c2e7.js">
+<link rel="modulepreload" href="./_npm/d3-selection@3.0.0/4d94e5b7.js">
+<link rel="modulepreload" href="./_npm/d3-shape@3.2.0/6d3a6726.js">
+<link rel="modulepreload" href="./_npm/d3-time@3.1.0/9f03c579.js">
+<link rel="modulepreload" href="./_npm/d3-time-format@4.1.0/07c9626f.js">
+<link rel="modulepreload" href="./_npm/d3-timer@3.0.1/b58a267d.js">
+<link rel="modulepreload" href="./_npm/d3-transition@3.0.1/004da2ac.js">
+<link rel="modulepreload" href="./_npm/d3-zoom@3.0.0/b5786b3f.js">
+<link rel="modulepreload" href="./_npm/binary-search-bounds@2.0.5/cbf6ba23.js">
+<link rel="modulepreload" href="./_npm/internmap@2.0.3/e08981d9.js">
+<link rel="modulepreload" href="./_npm/delaunator@5.1.0/d4ec0aa1.js">
+<link rel="modulepreload" href="./_npm/robust-predicates@3.0.3/42820bfa.js">
+<link rel="icon" href="./_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import {define} from "./_observablehq/client.0f01a480.js";
+
+define({id: "cb898749", inputs: ["display"], body: async (display) => {
+display(await(
+1 + 2
+))
+}});
+
+define({id: "85902a01", outputs: ["foo"], body: () => {
+const foo = 1 + 2;
+return {foo};
+}});
+
+define({id: "44cca995", inputs: ["display","foo"], body: (display,foo) => {
+display(foo)
+}});
+
+define({id: "e4b6431c", inputs: ["display"], body: async (display) => {
+display(await(
+document.createTextNode("[insert chart here]") // some imagination required
+))
+}});
+
+define({id: "01ba4719", body: () => {
+
+}});
+
+define({id: "92202848", inputs: ["html"], outputs: ["greeting"], body: (html) => {
+function greeting(name) {
+  return html`Hello, <i>${name}</i>!`;
+}
+return {greeting};
+}});
+
+define({id: "50f386c3", inputs: ["greeting","display"], body: async (greeting,display) => {
+display(await(
+greeting("world")
+))
+}});
+
+define({id: "421c3cee", inputs: ["Plot","aapl","display"], body: async (Plot,aapl,display) => {
+display(await(
+Plot.lineY(aapl, {x: "Date", y: "Close"}).plot({y: {grid: true}})
+))
+}});
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="./">Tutorial</a></li>
+  </ol>
+  <ol>
+    <li class="observablehq-link"><a href="./Cards">Directorio de fuentes (Cards)</a></li>
+    <li class="observablehq-link"><a href="./Directorio">Directorio de fuentes (Tabla)</a></li>
+    <li class="observablehq-link"><a href="./Directorio_interactivo">Página de pruebas</a></li>
+    <li class="observablehq-link"><a href="./prueba-api">VizcanvasAPI (prueba)</a></li>
+    <li class="observablehq-link"><a href="./prueba-binance">Prueba — Polling en tiempo real con Binance</a></li>
+    <li class="observablehq-link"><a href="./prueba-restcountries">REST Countries API (prueba)</a></li>
+    <li class="observablehq-link"><a href="./prueba-volumenes">Prueba — Volúmenes grandes de datos</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./Purebas_JavaScript">Pruebas usando JavaScript</a></li>
+    <li class="observablehq-link"><a href="./VizcanvasAPI">VizcanvasAPI (prueba)</a></li>
+  </ol>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="pruebas-usando-java-script" tabindex="-1"><a class="observablehq-header-anchor" href="#pruebas-usando-java-script">Pruebas usando JavaScript</a></h1>
+<p>Son las primeras pruebas familiarizandome con JavaScript:</p>
+<h3 id="fenced-code-blocks" tabindex="-1"><a class="observablehq-header-anchor" href="#fenced-code-blocks">FENCED CODE BLOCKS</a></h3>
+<p>Este tipo de bloques se suele utilizar para desplegar contenido como tablas o inputs.</p>
+<p>Existen dos tipos de bloques de "código cercado", <strong>Los bloques de expresion y los bloques de programación</strong></p>
+<p>Si queremos que el codigo del js se muestre debemos usar "echo" despues de js:</p>
+<h4 id="un-bloque-de-expresion-se-ve-como-el-siguiente" tabindex="-1"><a class="observablehq-header-anchor" href="#un-bloque-de-expresion-se-ve-como-el-siguiente">Un bloque de expresion se ve como el siguiente:</a></h4>
+<p>El bloque de expresion siempre muetra el resultado</p>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:cb898749:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-number">1</span> + <span class="hljs-number">2</span>
+</code></pre>
+<h4 id="mientras-que-uno-de-programacion-es-de-este-estilo" tabindex="-1"><a class="observablehq-header-anchor" href="#mientras-que-uno-de-programacion-es-de-este-estilo">Mientras que uno de programación es de este estilo:</a></h4>
+<div class="observablehq observablehq--block"><!--:85902a01:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">const</span> foo = <span class="hljs-number">1</span> + <span class="hljs-number">2</span>;
+</code></pre>
+<p>Notemos que con la semicoma no muestra directamente el resultado, se necesita usar "display":</p>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:44cca995:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-title function_">display</span>(foo)
+</code></pre>
+<p>Si queremos mostrar el código sin ejecutarlo necesitamos usar "run=false"</p>
+<pre data-language="js"><code class="language-js"><span class="hljs-number">1</span> + <span class="hljs-number">2</span>
+</code></pre>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:e4b6431c:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createTextNode</span>(<span class="hljs-string">"[insert chart here]"</span>) <span class="hljs-comment">// some imagination required</span>
+</code></pre>
+<div class="observablehq observablehq--block"><!--:01ba4719:--></div>
+<pre data-language="js"><code class="language-js">
+</code></pre>
+<div class="observablehq observablehq--block"><!--:92202848:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">greeting</span>(<span class="hljs-params">name</span>) {
+  <span class="hljs-keyword">return</span> html`<span class="language-xml">Hello, <span class="hljs-tag">&lt;<span class="hljs-name">i</span>&gt;</span></span><span class="hljs-subst">${name}</span><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span>!`</span>;
+}
+</code></pre>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:50f386c3:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-title function_">greeting</span>(<span class="hljs-string">"world"</span>)
+</code></pre>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:421c3cee:--></div>
+<pre data-language="js"><code class="language-js"><span class="hljs-title class_">Plot</span>.<span class="hljs-title function_">lineY</span>(aapl, {<span class="hljs-attr">x</span>: <span class="hljs-string">"Date"</span>, <span class="hljs-attr">y</span>: <span class="hljs-string">"Close"</span>}).<span class="hljs-title function_">plot</span>({<span class="hljs-attr">y</span>: {<span class="hljs-attr">grid</span>: <span class="hljs-literal">true</span>}})
+</code></pre>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./prueba-volumenes"><span>Prueba — Volúmenes grandes de datos</span></a><a rel="next" href="./VizcanvasAPI"><span>VizcanvasAPI (prueba)</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2026-06-04T01:25:58">Jun 4, 2026</a>.</div>
+</footer>
+</div>
+</body>
+</html>

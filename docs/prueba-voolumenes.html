@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.4">
+<title>Prueba — Volúmenes grandes de datos | Tutorial</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight.b050d634.css">
+<link rel="preload" as="style" href="./_observablehq/stdlib/inputs.f7bf0e12.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,near-midnight.b050d634.css">
+<link rel="stylesheet" type="text/css" href="./_observablehq/stdlib/inputs.f7bf0e12.css">
+<link rel="modulepreload" href="./_observablehq/client.0f01a480.js">
+<link rel="modulepreload" href="./_observablehq/runtime.607a8173.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.277aeab8.js">
+<link rel="modulepreload" href="./_npm/htl@1.0.0/87d6f6ef.js">
+<link rel="modulepreload" href="./_observablehq/stdlib/inputs.3feeafb9.js">
+<link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.17/a96a6bbb.js">
+<link rel="modulepreload" href="./_npm/d3-dsv@3.0.1/9cffc2bd.js">
+<link rel="modulepreload" href="./_npm/isoformat@0.2.1/18cbf477.js">
+<link rel="modulepreload" href="./_npm/d3@7.9.0/66d82917.js">
+<link rel="modulepreload" href="./_npm/interval-tree-1d@1.0.4/53fe8176.js">
+<link rel="modulepreload" href="./_npm/d3-array@3.2.4/e93ca09f.js">
+<link rel="modulepreload" href="./_npm/d3-axis@3.0.0/0f2de24d.js">
+<link rel="modulepreload" href="./_npm/d3-brush@3.0.0/65eb105b.js">
+<link rel="modulepreload" href="./_npm/d3-chord@3.0.1/7ef8fb2e.js">
+<link rel="modulepreload" href="./_npm/d3-color@3.1.0/aeb57b94.js">
+<link rel="modulepreload" href="./_npm/d3-contour@4.0.2/1d2aed74.js">
+<link rel="modulepreload" href="./_npm/d3-delaunay@6.0.4/87adea64.js">
+<link rel="modulepreload" href="./_npm/d3-dispatch@3.0.1/9ba9c7f3.js">
+<link rel="modulepreload" href="./_npm/d3-drag@3.0.0/4202580c.js">
+<link rel="modulepreload" href="./_npm/d3-ease@3.0.1/cdd7e898.js">
+<link rel="modulepreload" href="./_npm/d3-fetch@3.0.1/b4e2ad9a.js">
+<link rel="modulepreload" href="./_npm/d3-force@3.0.0/5e804d15.js">
+<link rel="modulepreload" href="./_npm/d3-format@3.1.2/3785bf2d.js">
+<link rel="modulepreload" href="./_npm/d3-geo@3.1.1/40599fb3.js">
+<link rel="modulepreload" href="./_npm/d3-hierarchy@3.1.2/e49e792c.js">
+<link rel="modulepreload" href="./_npm/d3-interpolate@3.0.1/8d1e5425.js">
+<link rel="modulepreload" href="./_npm/d3-path@3.1.0/20d3f133.js">
+<link rel="modulepreload" href="./_npm/d3-polygon@3.0.1/7553081f.js">
+<link rel="modulepreload" href="./_npm/d3-quadtree@3.0.1/0dfd751c.js">
+<link rel="modulepreload" href="./_npm/d3-random@3.0.1/3c90ee06.js">
+<link rel="modulepreload" href="./_npm/d3-scale@4.0.2/720b7f0a.js">
+<link rel="modulepreload" href="./_npm/d3-scale-chromatic@3.1.0/ba24c2e7.js">
+<link rel="modulepreload" href="./_npm/d3-selection@3.0.0/4d94e5b7.js">
+<link rel="modulepreload" href="./_npm/d3-shape@3.2.0/6d3a6726.js">
+<link rel="modulepreload" href="./_npm/d3-time@3.1.0/9f03c579.js">
+<link rel="modulepreload" href="./_npm/d3-time-format@4.1.0/07c9626f.js">
+<link rel="modulepreload" href="./_npm/d3-timer@3.0.1/b58a267d.js">
+<link rel="modulepreload" href="./_npm/d3-transition@3.0.1/004da2ac.js">
+<link rel="modulepreload" href="./_npm/d3-zoom@3.0.0/b5786b3f.js">
+<link rel="modulepreload" href="./_npm/binary-search-bounds@2.0.5/cbf6ba23.js">
+<link rel="modulepreload" href="./_npm/internmap@2.0.3/e08981d9.js">
+<link rel="modulepreload" href="./_npm/delaunator@5.1.0/d4ec0aa1.js">
+<link rel="modulepreload" href="./_npm/robust-predicates@3.0.3/42820bfa.js">
+<link rel="icon" href="./_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import {define} from "./_observablehq/client.0f01a480.js";
+import {registerFile} from "./_observablehq/stdlib.277aeab8.js";
+
+registerFile("./data/datos_sinteticos.csv", {"name":"./data/datos_sinteticos.csv","mimeType":"text/csv","path":"./_file/data/datos_sinteticos.0cd6522f.csv","lastModified":1780557208058,"size":51225508});
+
+define({id: "ecd66d38", inputs: ["FileAttachment"], outputs: ["cargaInicial","datos"], body: async (FileAttachment) => {
+// CARGA CON MEDICIÓN
+// Envolvemos la descarga del CSV en una función que mide cuánto tarda.
+// performance.now() devuelve tiempo en milisegundos con alta precisión.
+const cargaInicial = await (async () => {
+  const t0 = performance.now();
+  const datos = await FileAttachment("./data/datos_sinteticos.csv").csv({typed: true});
+  const t1 = performance.now();
+  return {
+    datos,
+    tiempoDescargaMs: t1 - t0,
+    filas: datos.length
+  };
+})();
+
+const datos = cargaInicial.datos;
+return {cargaInicial,datos};
+}});
+
+define({id: "b094e26d", inputs: ["view","Inputs"], outputs: ["umbral"], body: (view,Inputs) => {
+const umbral = view(Inputs.range(
+  [0, 2_000_000],
+  { label: "Población mínima", step: 10_000, value: 0 }
+));
+return {umbral};
+}});
+
+define({id: "d151fa46", inputs: ["view","Inputs","datos"], outputs: ["estadoSeleccionado"], body: (view,Inputs,datos) => {
+const estadoSeleccionado = view(Inputs.select(
+  ["Todos", ...new Set(datos.map(d => d.estado)).values()],
+  { label: "Estado" }
+));
+return {estadoSeleccionado};
+}});
+
+define({id: "4ba68fe5", inputs: ["datos","umbral","estadoSeleccionado"], outputs: ["resultadoFiltrado"], body: (datos,umbral,estadoSeleccionado) => {
+// FILTRO CON MEDICIÓN
+// Esta celda se re-ejecuta cada vez que umbral o estadoSeleccionado cambian.
+// Cada re-ejecución produce una medición fresca del tiempo de filtrado.
+const resultadoFiltrado = (() => {
+  const t0 = performance.now();
+  const filtrados = datos.filter(d =>
+    d.poblacion >= umbral &&
+    (estadoSeleccionado === "Todos" || d.estado === estadoSeleccionado)
+  );
+  const t1 = performance.now();
+  return {
+    filtrados,
+    tiempoFiltroMs: t1 - t0
+  };
+})();
+return {resultadoFiltrado};
+}});
+
+define({id: "72538b4e", inputs: ["display","html","cargaInicial","resultadoFiltrado","datos"], body: (display,html,cargaInicial,resultadoFiltrado,datos) => {
+// PANEL DE MÉTRICAS EN VIVO
+// Memoria JS heap solo funciona en Chrome/Edge. En otros browsers
+// mostramos "no disponible" en lugar de fallar.
+display(html`<div style="font-family: monospace; padding: 1em; background: var(--theme-background-alt); border-radius: 6px; line-height: 1.8;">
+  <strong style="font-size: 1.1em;">Métricas de rendimiento</strong><br>
+  <strong>Filas totales:</strong> ${cargaInicial.filas.toLocaleString()}<br>
+  <strong>Tiempo de descarga + parseo:</strong> ${cargaInicial.tiempoDescargaMs.toFixed(1)} ms<br>
+  <strong>Filas tras filtrar:</strong> ${resultadoFiltrado.filtrados.length.toLocaleString()}<br>
+  <strong>Tiempo del último filtro:</strong> ${resultadoFiltrado.tiempoFiltroMs.toFixed(2)} ms<br>
+  <strong>Memoria JS heap:</strong> ${
+    performance.memory
+      ? `${(performance.memory.usedJSHeapSize / 1024 / 1024).toFixed(1)} MB de ${(performance.memory.jsHeapSizeLimit / 1024 / 1024).toFixed(0)} MB`
+      : "no disponible en este browser"
+  }<br>
+  <strong>Datos serializados:</strong> ${Math.round(JSON.stringify(datos).length / 1024).toLocaleString()} KB
+</div>`);
+}});
+
+define({id: "b5602cd2", inputs: ["display","Plot","resultadoFiltrado"], body: (display,Plot,resultadoFiltrado) => {
+// Histograma — la visualización que estresará a Observable con muchos datos
+display(Plot.plot({
+  marginLeft: 60,
+  marks: [
+    Plot.rectY(resultadoFiltrado.filtrados, Plot.binX({y: "count"}, {x: "poblacion", thresholds: 50})),
+    Plot.ruleY([0])
+  ]
+}));
+}});
+
+define({id: "a661db5d", inputs: ["display","Inputs","resultadoFiltrado"], body: (display,Inputs,resultadoFiltrado) => {
+display(Inputs.table(resultadoFiltrado.filtrados.slice(0, 100), {
+  columns: ["estado", "municipio", "poblacion", "indice_marginacion"]
+}));
+}});
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="./">Tutorial</a></li>
+  </ol>
+  <ol>
+    <li class="observablehq-link"><a href="./Cards">Directorio de fuentes (Cards)</a></li>
+    <li class="observablehq-link"><a href="./Directorio">Directorio de fuentes (Tabla)</a></li>
+    <li class="observablehq-link"><a href="./Directorio_interactivo">Página de pruebas</a></li>
+    <li class="observablehq-link"><a href="./prueba-api">VizcanvasAPI (prueba)</a></li>
+    <li class="observablehq-link"><a href="./prueba-binance">Prueba — Polling en tiempo real con Binance</a></li>
+    <li class="observablehq-link"><a href="./prueba-restcountries">REST Countries API (prueba)</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./prueba-voolumenes">Prueba — Volúmenes grandes de datos</a></li>
+    <li class="observablehq-link"><a href="./Purebas_JavaScript">Pruebas usando JavaScript</a></li>
+    <li class="observablehq-link"><a href="./VizcanvasAPI">VizcanvasAPI (prueba)</a></li>
+  </ol>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="prueba-volumenes-grandes-de-datos" tabindex="-1"><a class="observablehq-header-anchor" href="#prueba-volumenes-grandes-de-datos">Prueba — Volúmenes grandes de datos</a></h1>
+<div class="observablehq observablehq--block"><!--:ecd66d38:--></div>
+<div class="observablehq observablehq--block"><!--:b094e26d:--></div>
+<div class="observablehq observablehq--block"><!--:d151fa46:--></div>
+<div class="observablehq observablehq--block"><!--:4ba68fe5:--></div>
+<div class="observablehq observablehq--block"><!--:72538b4e:--></div>
+<div class="observablehq observablehq--block"><!--:b5602cd2:--></div>
+<div class="observablehq observablehq--block"><!--:a661db5d:--></div>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./prueba-restcountries"><span>REST Countries API (prueba)</span></a><a rel="next" href="./Purebas_JavaScript"><span>Pruebas usando JavaScript</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2026-06-04T01:13:14">Jun 4, 2026</a>.</div>
+</footer>
+</div>
+</body>
+</html>

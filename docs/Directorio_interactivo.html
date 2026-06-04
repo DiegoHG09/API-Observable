@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.4">
+<title>Página de pruebas | Tutorial</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight.b050d634.css">
+<link rel="preload" as="style" href="./_observablehq/stdlib/inputs.f7bf0e12.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,near-midnight.b050d634.css">
+<link rel="stylesheet" type="text/css" href="./_observablehq/stdlib/inputs.f7bf0e12.css">
+<link rel="modulepreload" href="./_observablehq/client.0f01a480.js">
+<link rel="modulepreload" href="./_observablehq/runtime.607a8173.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.277aeab8.js">
+<link rel="modulepreload" href="./_observablehq/stdlib/inputs.3feeafb9.js">
+<link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.17/a96a6bbb.js">
+<link rel="modulepreload" href="./_npm/htl@1.0.0/87d6f6ef.js">
+<link rel="modulepreload" href="./_npm/isoformat@0.2.1/18cbf477.js">
+<link rel="modulepreload" href="./_npm/d3@7.9.0/66d82917.js">
+<link rel="modulepreload" href="./_npm/interval-tree-1d@1.0.4/53fe8176.js">
+<link rel="modulepreload" href="./_npm/d3-array@3.2.4/e93ca09f.js">
+<link rel="modulepreload" href="./_npm/d3-axis@3.0.0/0f2de24d.js">
+<link rel="modulepreload" href="./_npm/d3-brush@3.0.0/65eb105b.js">
+<link rel="modulepreload" href="./_npm/d3-chord@3.0.1/7ef8fb2e.js">
+<link rel="modulepreload" href="./_npm/d3-color@3.1.0/aeb57b94.js">
+<link rel="modulepreload" href="./_npm/d3-contour@4.0.2/1d2aed74.js">
+<link rel="modulepreload" href="./_npm/d3-delaunay@6.0.4/87adea64.js">
+<link rel="modulepreload" href="./_npm/d3-dispatch@3.0.1/9ba9c7f3.js">
+<link rel="modulepreload" href="./_npm/d3-drag@3.0.0/4202580c.js">
+<link rel="modulepreload" href="./_npm/d3-dsv@3.0.1/9cffc2bd.js">
+<link rel="modulepreload" href="./_npm/d3-ease@3.0.1/cdd7e898.js">
+<link rel="modulepreload" href="./_npm/d3-fetch@3.0.1/b4e2ad9a.js">
+<link rel="modulepreload" href="./_npm/d3-force@3.0.0/5e804d15.js">
+<link rel="modulepreload" href="./_npm/d3-format@3.1.2/3785bf2d.js">
+<link rel="modulepreload" href="./_npm/d3-geo@3.1.1/40599fb3.js">
+<link rel="modulepreload" href="./_npm/d3-hierarchy@3.1.2/e49e792c.js">
+<link rel="modulepreload" href="./_npm/d3-interpolate@3.0.1/8d1e5425.js">
+<link rel="modulepreload" href="./_npm/d3-path@3.1.0/20d3f133.js">
+<link rel="modulepreload" href="./_npm/d3-polygon@3.0.1/7553081f.js">
+<link rel="modulepreload" href="./_npm/d3-quadtree@3.0.1/0dfd751c.js">
+<link rel="modulepreload" href="./_npm/d3-random@3.0.1/3c90ee06.js">
+<link rel="modulepreload" href="./_npm/d3-scale@4.0.2/720b7f0a.js">
+<link rel="modulepreload" href="./_npm/d3-scale-chromatic@3.1.0/ba24c2e7.js">
+<link rel="modulepreload" href="./_npm/d3-selection@3.0.0/4d94e5b7.js">
+<link rel="modulepreload" href="./_npm/d3-shape@3.2.0/6d3a6726.js">
+<link rel="modulepreload" href="./_npm/d3-time@3.1.0/9f03c579.js">
+<link rel="modulepreload" href="./_npm/d3-time-format@4.1.0/07c9626f.js">
+<link rel="modulepreload" href="./_npm/d3-timer@3.0.1/b58a267d.js">
+<link rel="modulepreload" href="./_npm/d3-transition@3.0.1/004da2ac.js">
+<link rel="modulepreload" href="./_npm/d3-zoom@3.0.0/b5786b3f.js">
+<link rel="modulepreload" href="./_npm/binary-search-bounds@2.0.5/cbf6ba23.js">
+<link rel="modulepreload" href="./_npm/internmap@2.0.3/e08981d9.js">
+<link rel="modulepreload" href="./_npm/delaunator@5.1.0/d4ec0aa1.js">
+<link rel="modulepreload" href="./_npm/robust-predicates@3.0.3/42820bfa.js">
+<link rel="icon" href="./_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import {define} from "./_observablehq/client.0f01a480.js";
+
+define({id: "fb57b828", mode: "inline", inputs: ["Plot","weather","display"], body: async (Plot,weather,display) => {
+display(await(
+Plot.cell(weather.slice(-365), {x: (d) => d.date.getUTCDate(), y: (d) => d.date.getUTCMonth(), fill: "temp_max", tip: true, inset: 0.5}).plot({marginTop: 0, height: 240, padding: 0})
+))
+}});
+
+define({id: "9425bbdd", mode: "inline", inputs: ["Inputs","industries","display"], body: async (Inputs,industries,display) => {
+display(await(
+Inputs.table(industries)
+))
+}});
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="./">Tutorial</a></li>
+  </ol>
+  <ol>
+    <li class="observablehq-link"><a href="./Cards">Directorio de fuentes (Cards)</a></li>
+    <li class="observablehq-link"><a href="./Directorio">Directorio de fuentes (Tabla)</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./Directorio_interactivo">Página de pruebas</a></li>
+    <li class="observablehq-link"><a href="./prueba-api">VizcanvasAPI (prueba)</a></li>
+    <li class="observablehq-link"><a href="./prueba-binance">Prueba — Polling en tiempo real con Binance</a></li>
+    <li class="observablehq-link"><a href="./prueba-restcountries">REST Countries API (prueba)</a></li>
+    <li class="observablehq-link"><a href="./prueba-volumenes">Prueba — Volúmenes grandes de datos</a></li>
+    <li class="observablehq-link"><a href="./VizcanvasAPI">VizcanvasAPI (prueba)</a></li>
+  </ol>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<main id="observablehq-main" class="observablehq">
+<h1 id="pagina-de-pruebas" tabindex="-1"><a class="observablehq-header-anchor" href="#pagina-de-pruebas">Página de pruebas</a></h1>
+<h3 id="texto-escondido" tabindex="-1"><a class="observablehq-header-anchor" href="#texto-escondido">Texto "escondido"</a></h3>
+<details>
+  <summary>Click me</summary>
+  This text is not visible by default.
+</details>
+<h3 id="texto-dentro-de-un-recuadro-y-en-negritas-y-cursiva" tabindex="-1"><a class="observablehq-header-anchor" href="#texto-dentro-de-un-recuadro-y-en-negritas-y-cursiva">Texto "dentro de un recuadro y en negritas y cursiva"</a></h3>
+<div class="grid grid-cols-4">
+  <div class="card">
+<p>This is <strong>Markdown</strong> inside of <em>HTML</em>!</p>
+  </div>
+</div>
+<h3 id="grids" tabindex="-1"><a class="observablehq-header-anchor" href="#grids">Grids</a></h3>
+<div class="grid grid-cols-4">
+  <div class="card"><h1>A</h1></div>
+  <div class="card"><h1>B</h1></div>
+  <div class="card"><h1>C</h1></div>
+  <div class="card"><h1>D</h1></div>
+</div>
+<p>Una cuadricula con diferentes tamaños de recuadros</p>
+<div class="grid grid-cols-2">
+  <div class="card"><h1>A</h1>1 × 1</div>
+  <div class="card grid-rowspan-2"><h1>B</h1>1 × 2</div>
+  <div class="card"><h1>C</h1>1 × 1</div>
+  <div class="card grid-colspan-2"><h1>D</h1>2 × 1</div>
+</div>
+<p>Con texto sería algo del estilo:</p>
+<div class="grid grid-cols-2">
+  <div class="card">Call me Ishmael.</div>
+  <div class="card">Some years ago—never mind how long precisely—having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world.</div>
+  <div class="card">It is a way I have of driving off the spleen and regulating the circulation.</div>
+</div>
+<h3 id="cards" tabindex="-1"><a class="observablehq-header-anchor" href="#cards">Cards</a></h3>
+<p>Se usa normalmente para agrupar y delimitar contenido con colores <strong>determinados por el tema actual</strong></p>
+<div class="card" style="max-width: 640px;">
+  <h2>It gets hotter during summer</h2>
+  <h3>And months have 28–31 days</h3>
+  <observablehq-loading></observablehq-loading><!--:fb57b828:-->
+</div>
+<h4 id="las-cards-se-pueden-usar-por-su-cuenta-pero-normalmente-existen-en-un-grid" tabindex="-1"><a class="observablehq-header-anchor" href="#las-cards-se-pueden-usar-por-su-cuenta-pero-normalmente-existen-en-un-grid">Las cards se pueden usar por su cuenta pero normalmente existen en un "grid":</a></h4>
+<div class="grid grid-cols-2">
+  <div class="card">
+    <h2>Lorem ipsum</h2>
+    <p>Id ornare arcu odio ut sem nulla pharetra. Aliquet lectus proin nibh nisl condimentum id venenatis a. Feugiat sed lectus vestibulum mattis ullamcorper velit. Aliquet nec ullamcorper sit amet. Sit amet tellus cras adipiscing. Condimentum id venenatis a condimentum vitae. Semper eget duis at tellus. Ut faucibus pulvinar elementum integer enim.</p>
+    <p>Et malesuada fames ac turpis. Integer vitae justo eget magna fermentum iaculis eu non diam. Aliquet risus feugiat in ante metus dictum at. Consectetur purus ut faucibus pulvinar.</p>
+  </div>
+  <div class="card" style="padding: 0;">
+    <observablehq-loading></observablehq-loading><!--:9425bbdd:-->
+  </div>
+</div>
+<h3 id="notes" tabindex="-1"><a class="observablehq-header-anchor" href="#notes">Notes</a></h3>
+<div class="note">This is a note.</div>
+<div class="tip">This is a tip.</div>
+<div class="warning">This is a warning.</div>
+<div class="caution">This is a caution.</div>
+<p>Diferencias entre usar markdown y HTML:</p>
+<h4 id="html" tabindex="-1"><a class="observablehq-header-anchor" href="#html">HTML</a></h4>
+<div class="tip">
+  <p>This is a <i>styled</i> tip using <small>HTML</small>.</p>
+</div>
+<h4 id="markdown" tabindex="-1"><a class="observablehq-header-anchor" href="#markdown">Markdown</a></h4>
+<div class="tip">
+<p>This is a <em>styled</em> tip using <strong>Markdown</strong>.</p>
+</div>
+<p>Se pueden:</p>
+<div class="warning" label="⚠️ Danger ⚠️">No lifeguard on duty. Swim at your own risk!</div>
+<div class="note" label="">This note has no label.</div>
+<h3 id="tables" tabindex="-1"><a class="observablehq-header-anchor" href="#tables">Tables</a></h3>
+<table>
+<thead>
+<tr>
+<th>Column 1</th>
+<th>Column 2</th>
+<th>Column 3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cell 1-1</td>
+<td>Cell 2-1</td>
+<td>Cell 3-1</td>
+</tr>
+<tr>
+<td>Cell 1-2</td>
+<td>Cell 2-2</td>
+<td>Cell 3-2</td>
+</tr>
+</tbody>
+</table>
+<h3 id="lists" tabindex="-1"><a class="observablehq-header-anchor" href="#lists">Lists</a></h3>
+<ul>
+<li>red</li>
+<li>green</li>
+<li>blue
+<ul>
+<li>light blue</li>
+<li>dark blue</li>
+</ul>
+</li>
+</ul>
+<p>Enumeradas</p>
+<ol>
+<li>first</li>
+<li>second</li>
+<li>third
+<ol>
+<li>third first</li>
+<li>third second</li>
+</ol>
+</li>
+</ol>
+<h3 id="links" tabindex="-1"><a class="observablehq-header-anchor" href="#links">Links</a></h3>
+<p><a href="https://example.com" target="_blank" rel="noopener noreferrer">https://example.com</a>
+<a href="https://example.com" target="_blank" rel="noopener noreferrer">external link</a>
+<a href="https://en.wikipedia.org/wiki/Tar_(computing)" target="_blank" rel="noopener noreferrer">external link</a></p>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./Directorio"><span>Directorio de fuentes (Tabla)</span></a><a rel="next" href="./prueba-api"><span>VizcanvasAPI (prueba)</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2026-06-04T12:11:15">Jun 4, 2026</a>.</div>
+</footer>
+</div>
+</body>
+</html>
