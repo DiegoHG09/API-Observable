@@ -1,8 +1,8 @@
 // See https://observablehq.com/framework/config for documentation.
 export default {
   // The app’s title; used in the sidebar and webpage titles.
-   base: "/API-vizcanvas-Observable-prueba-",
-   title: "Tutorial",
+   base: "/API-Observable",
+   title: "Pruebas de consumo de APIs",
 
   // The pages and sections in the sidebar. If you don’t specify this option,
   // all pages will be listed in alphabetical order. Listing pages explicitly
