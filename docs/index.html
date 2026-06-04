@@ -13,82 +13,10 @@
 <link rel="modulepreload" href="./_observablehq/client.0f01a480.js">
 <link rel="modulepreload" href="./_observablehq/runtime.607a8173.js">
 <link rel="modulepreload" href="./_observablehq/stdlib.277aeab8.js">
-<link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.17/a96a6bbb.js">
-<link rel="modulepreload" href="./_npm/d3@7.9.0/66d82917.js">
-<link rel="modulepreload" href="./_npm/isoformat@0.2.1/18cbf477.js">
-<link rel="modulepreload" href="./_npm/interval-tree-1d@1.0.4/53fe8176.js">
-<link rel="modulepreload" href="./_npm/d3-array@3.2.4/e93ca09f.js">
-<link rel="modulepreload" href="./_npm/d3-axis@3.0.0/0f2de24d.js">
-<link rel="modulepreload" href="./_npm/d3-brush@3.0.0/65eb105b.js">
-<link rel="modulepreload" href="./_npm/d3-chord@3.0.1/7ef8fb2e.js">
-<link rel="modulepreload" href="./_npm/d3-color@3.1.0/aeb57b94.js">
-<link rel="modulepreload" href="./_npm/d3-contour@4.0.2/1d2aed74.js">
-<link rel="modulepreload" href="./_npm/d3-delaunay@6.0.4/87adea64.js">
-<link rel="modulepreload" href="./_npm/d3-dispatch@3.0.1/9ba9c7f3.js">
-<link rel="modulepreload" href="./_npm/d3-drag@3.0.0/4202580c.js">
-<link rel="modulepreload" href="./_npm/d3-dsv@3.0.1/9cffc2bd.js">
-<link rel="modulepreload" href="./_npm/d3-ease@3.0.1/cdd7e898.js">
-<link rel="modulepreload" href="./_npm/d3-fetch@3.0.1/b4e2ad9a.js">
-<link rel="modulepreload" href="./_npm/d3-force@3.0.0/5e804d15.js">
-<link rel="modulepreload" href="./_npm/d3-format@3.1.2/3785bf2d.js">
-<link rel="modulepreload" href="./_npm/d3-geo@3.1.1/40599fb3.js">
-<link rel="modulepreload" href="./_npm/d3-hierarchy@3.1.2/e49e792c.js">
-<link rel="modulepreload" href="./_npm/d3-interpolate@3.0.1/8d1e5425.js">
-<link rel="modulepreload" href="./_npm/d3-path@3.1.0/20d3f133.js">
-<link rel="modulepreload" href="./_npm/d3-polygon@3.0.1/7553081f.js">
-<link rel="modulepreload" href="./_npm/d3-quadtree@3.0.1/0dfd751c.js">
-<link rel="modulepreload" href="./_npm/d3-random@3.0.1/3c90ee06.js">
-<link rel="modulepreload" href="./_npm/d3-scale@4.0.2/720b7f0a.js">
-<link rel="modulepreload" href="./_npm/d3-scale-chromatic@3.1.0/ba24c2e7.js">
-<link rel="modulepreload" href="./_npm/d3-selection@3.0.0/4d94e5b7.js">
-<link rel="modulepreload" href="./_npm/d3-shape@3.2.0/6d3a6726.js">
-<link rel="modulepreload" href="./_npm/d3-time@3.1.0/9f03c579.js">
-<link rel="modulepreload" href="./_npm/d3-time-format@4.1.0/07c9626f.js">
-<link rel="modulepreload" href="./_npm/d3-timer@3.0.1/b58a267d.js">
-<link rel="modulepreload" href="./_npm/d3-transition@3.0.1/004da2ac.js">
-<link rel="modulepreload" href="./_npm/d3-zoom@3.0.0/b5786b3f.js">
-<link rel="modulepreload" href="./_npm/binary-search-bounds@2.0.5/cbf6ba23.js">
-<link rel="modulepreload" href="./_npm/internmap@2.0.3/e08981d9.js">
-<link rel="modulepreload" href="./_npm/delaunator@5.1.0/d4ec0aa1.js">
-<link rel="modulepreload" href="./_npm/robust-predicates@3.0.3/42820bfa.js">
 <link rel="icon" href="./_file/observable.1af93621.png" type="image/png" sizes="32x32">
 <script type="module">
 
-import {define} from "./_observablehq/client.0f01a480.js";
-
-define({id: "7935742a", mode: "inline", inputs: ["resize","Plot","aapl","display"], body: async (resize,Plot,aapl,display) => {
-display(await(
-    resize((width) => Plot.plot({
-      title: "Your awesomeness over time 🚀",
-      subtitle: "Up and to the right!",
-      width,
-      y: {grid: true, label: "Awesomeness"},
-      marks: [
-        Plot.ruleY([0]),
-        Plot.lineY(aapl, {x: "Date", y: "Close", tip: true})
-      ]
-    }))
-  
-))
-}});
-
-define({id: "699041c1", mode: "inline", inputs: ["resize","Plot","penguins","display"], body: async (resize,Plot,penguins,display) => {
-display(await(
-    resize((width) => Plot.plot({
-      title: "How big are penguins, anyway? 🐧",
-      width,
-      grid: true,
-      x: {label: "Body mass (g)"},
-      y: {label: "Flipper length (mm)"},
-      color: {legend: true},
-      marks: [
-        Plot.linearRegressionY(penguins, {x: "body_mass_g", y: "flipper_length_mm", stroke: "species"}),
-        Plot.dot(penguins, {x: "body_mass_g", y: "flipper_length_mm", stroke: "species", tip: true})
-      ]
-    }))
-  
-))
-}});
+import "./_observablehq/client.0f01a480.js";
 
 </script>
 </head>
@@ -111,14 +39,13 @@ display(await(
 <div id="observablehq-center">
 <main id="observablehq-main" class="observablehq">
 <div class="hero">
-  <h1>Prueba en vivo</h1>
+  <h1>Consumo de APIs en Observable Framework</h1>
   <h2>Welcome to your new app! Edit&nbsp;<code style="font-size: 90%;">src/index.md</code> to change this page.</h2>
-  <a href="https://observablehq.com/framework/getting-started" target="_blank" rel="noopener noreferrer">Get started<span style="display: inline-block; margin-left: 0.25rem;">↗︎</span></a>
+  <p style="font-size: 1rem;">
+    Este sitio documenta las pruebas de integración entre Observable Framework y APIs externas, incluyendo VizCanvas, Binance y REST Countries.
+  </p>
 </div>
-<div class="grid grid-cols-2" style="grid-auto-rows: 504px;">
-  <div class="card"><observablehq-loading></observablehq-loading><!--:7935742a:--></div>
-  <div class="card"><observablehq-loading></observablehq-loading><!--:699041c1:--></div>
-</div>
+<h2 id="contexto" tabindex="-1"><a class="observablehq-header-anchor" href="#contexto">Contexto</a></h2>
 <hr>
 <h2 id="next-steps" tabindex="-1"><a class="observablehq-header-anchor" href="#next-steps">Next steps</a></h2>
 <p>Here are some ideas of things you could try…</p>
@@ -190,7 +117,7 @@ display(await(
 </main>
 <footer id="observablehq-footer">
 <nav><a rel="next" href="./prueba-binance"><span>Polling en tiempo real con Binance</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2026-06-04T14:57:31">Jun 4, 2026</a>.</div>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2026-06-04T15:28:12">Jun 4, 2026</a>.</div>
 </footer>
 </div>
 </body>
