@@ -1,7 +1,20 @@
-# Prueba — Volúmenes grandes de datos
+---
+Title: Volúmenes grandes de datos
+draft: true 
+---
+
+# Volúmenes grandes de datos
+
+### Descripción
+
+Evaluamos los límites prácticos de Observable al manejar grandes volúmenes de datos. Se generaron datos sintéticos representativos del dominio del grupo (estado, municipio, población e índice de marginación) con hasta 2 millones de
+filas, **midiendo tiempo de carga, latencia de filtros y consumo de memoria directamente en pantalla**. El cuello de botella principal a esta escala es la transferencia inicial de datos, no el procesamiento ni el filtrado.
+
+### Características
+
+Datos: generados sintéticamente con un data loader en Python.
 
 ```js
-// CARGA CON MEDICIÓN
 // Envolvemos la descarga del CSV en una función que mide cuánto tarda.
 // performance.now() devuelve tiempo en milisegundos con alta precisión.
 const cargaInicial = await (async () => {
@@ -33,7 +46,7 @@ const estadoSeleccionado = view(Inputs.select(
 ```
 
 ```js
-// FILTRO CON MEDICIÓN
+// Filtro
 // Esta celda se re-ejecuta cada vez que umbral o estadoSeleccionado cambian.
 // Cada re-ejecución produce una medición fresca del tiempo de filtrado.
 const resultadoFiltrado = (() => {
@@ -51,9 +64,7 @@ const resultadoFiltrado = (() => {
 ```
 
 ```js
-// PANEL DE MÉTRICAS EN VIVO
-// Memoria JS heap solo funciona en Chrome/Edge. En otros browsers
-// mostramos "no disponible" en lugar de fallar.
+// Panel de métricas
 display(html`<div style="font-family: monospace; padding: 1em; background: var(--theme-background-alt); border-radius: 6px; line-height: 1.8;">
   <strong style="font-size: 1.1em;">Métricas de rendimiento</strong><br>
   <strong>Filas totales:</strong> ${cargaInicial.filas.toLocaleString()}<br>

@@ -1,4 +1,13 @@
-# REST Countries API (prueba)
+# REST Countries 
+
+#### Descripción
+
+Prueba de confirmación que valida la arquitectura Observable + fetch en runtime desplegado en HTTPS. 
+Se consulta la API de REST Countries para obtener datos de población y área de todos los países de América, con un filtro interactivo de población mínima. Esta prueba surgió para **descartar que el problema identificado con VizCanvas fuera de Observable** y se confirmó que la **arquitectura funciona correctamente cuando la API también corre en HTTPS.**
+
+
+#### Características 
+API: REST Countries — pública, sin autenticación, HTTPS.
 
 ```js
 const respuesta = await fetch("https://restcountries.com/v3.1/region/americas")

@@ -1,5 +1,18 @@
 # Polling en tiempo real con Binance
 
+<div class="hero">
+  <h1>Polling en tiempo real con Binance</h1>
+</div>
+
+#### Descripción
+
+Prueba de consumo de API pública en tiempo real mediante un polling automático.
+Se consulta la API REST de Binance cada N segundos configurable por el usuario desde un slider (por el momento) para obtener precios actuales de criptomonedas. Esta prueba **demuestra que Observable puede mostrar datos que cambian constantemente sin recargar la página ni reconstruir el sitio**. Como nota adicional: *El intervalo de actualización se persiste localmente en el browser mediante localStorage.*
+
+#### Características 
+API: Binance REST API — pública, sin autenticación, HTTPS.
+
+
 ```js
 import {binanceConfig} from "./config/binance.js";
 ```
@@ -153,3 +166,9 @@ display(Plot.plot({
   ]
 }));
 ```
+
+<style>
+  .observablehq--block {
+    max-width: 100%;
+  }
+</style>

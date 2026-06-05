@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.4">
+<title>Posición de la ISS en tiempo real | Pruebas de consumo de APIs</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight.b050d634.css">
+<link rel="preload" as="style" href="./_observablehq/stdlib/inputs.f7bf0e12.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,near-midnight.b050d634.css">
+<link rel="stylesheet" type="text/css" href="./_observablehq/stdlib/inputs.f7bf0e12.css">
+<link rel="modulepreload" href="./_observablehq/client.0f01a480.js">
+<link rel="modulepreload" href="./_observablehq/runtime.607a8173.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.277aeab8.js">
+<link rel="modulepreload" href="./_npm/htl@1.0.0/87d6f6ef.js">
+<link rel="modulepreload" href="./_observablehq/stdlib/inputs.3feeafb9.js">
+<link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.17/a96a6bbb.js">
+<link rel="modulepreload" href="./_npm/isoformat@0.2.1/18cbf477.js">
+<link rel="modulepreload" href="./_npm/d3@7.9.0/66d82917.js">
+<link rel="modulepreload" href="./_npm/interval-tree-1d@1.0.4/53fe8176.js">
+<link rel="modulepreload" href="./_npm/d3-array@3.2.4/e93ca09f.js">
+<link rel="modulepreload" href="./_npm/d3-axis@3.0.0/0f2de24d.js">
+<link rel="modulepreload" href="./_npm/d3-brush@3.0.0/65eb105b.js">
+<link rel="modulepreload" href="./_npm/d3-chord@3.0.1/7ef8fb2e.js">
+<link rel="modulepreload" href="./_npm/d3-color@3.1.0/aeb57b94.js">
+<link rel="modulepreload" href="./_npm/d3-contour@4.0.2/1d2aed74.js">
+<link rel="modulepreload" href="./_npm/d3-delaunay@6.0.4/87adea64.js">
+<link rel="modulepreload" href="./_npm/d3-dispatch@3.0.1/9ba9c7f3.js">
+<link rel="modulepreload" href="./_npm/d3-drag@3.0.0/4202580c.js">
+<link rel="modulepreload" href="./_npm/d3-dsv@3.0.1/9cffc2bd.js">
+<link rel="modulepreload" href="./_npm/d3-ease@3.0.1/cdd7e898.js">
+<link rel="modulepreload" href="./_npm/d3-fetch@3.0.1/b4e2ad9a.js">
+<link rel="modulepreload" href="./_npm/d3-force@3.0.0/5e804d15.js">
+<link rel="modulepreload" href="./_npm/d3-format@3.1.2/3785bf2d.js">
+<link rel="modulepreload" href="./_npm/d3-geo@3.1.1/40599fb3.js">
+<link rel="modulepreload" href="./_npm/d3-hierarchy@3.1.2/e49e792c.js">
+<link rel="modulepreload" href="./_npm/d3-interpolate@3.0.1/8d1e5425.js">
+<link rel="modulepreload" href="./_npm/d3-path@3.1.0/20d3f133.js">
+<link rel="modulepreload" href="./_npm/d3-polygon@3.0.1/7553081f.js">
+<link rel="modulepreload" href="./_npm/d3-quadtree@3.0.1/0dfd751c.js">
+<link rel="modulepreload" href="./_npm/d3-random@3.0.1/3c90ee06.js">
+<link rel="modulepreload" href="./_npm/d3-scale@4.0.2/720b7f0a.js">
+<link rel="modulepreload" href="./_npm/d3-scale-chromatic@3.1.0/ba24c2e7.js">
+<link rel="modulepreload" href="./_npm/d3-selection@3.0.0/4d94e5b7.js">
+<link rel="modulepreload" href="./_npm/d3-shape@3.2.0/6d3a6726.js">
+<link rel="modulepreload" href="./_npm/d3-time@3.1.0/9f03c579.js">
+<link rel="modulepreload" href="./_npm/d3-time-format@4.1.0/07c9626f.js">
+<link rel="modulepreload" href="./_npm/d3-timer@3.0.1/b58a267d.js">
+<link rel="modulepreload" href="./_npm/d3-transition@3.0.1/004da2ac.js">
+<link rel="modulepreload" href="./_npm/d3-zoom@3.0.0/b5786b3f.js">
+<link rel="modulepreload" href="./_npm/binary-search-bounds@2.0.5/cbf6ba23.js">
+<link rel="modulepreload" href="./_npm/internmap@2.0.3/e08981d9.js">
+<link rel="modulepreload" href="./_npm/delaunator@5.1.0/d4ec0aa1.js">
+<link rel="modulepreload" href="./_npm/robust-predicates@3.0.3/42820bfa.js">
+<link rel="icon" href="./_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import {define} from "./_observablehq/client.0f01a480.js";
+
+define({id: "8cb7816f", inputs: ["localStorage","view","Inputs"], outputs: ["ISS_API","LS_KEY","valorGuardado","intervaloInicial","intervaloSegundos"], body: (localStorage,view,Inputs) => {
+const ISS_API = "https://api.wheretheiss.at/v1/satellites/25544";
+const LS_KEY = "iss.intervaloSegundos";
+const valorGuardado = localStorage.getItem(LS_KEY);
+const intervaloInicial = valorGuardado !== null ? parseFloat(valorGuardado) : 3;
+
+const intervaloSegundos = view(Inputs.range([1, 15], {
+  label: "Intervalo de polling (segundos)",
+  step: 1,
+  value: intervaloInicial
+}));
+return {ISS_API,LS_KEY,valorGuardado,intervaloInicial,intervaloSegundos};
+}});
+
+define({id: "283ca175", inputs: ["localStorage","LS_KEY","intervaloSegundos"], body: (localStorage,LS_KEY,intervaloSegundos) => {
+{ localStorage.setItem(LS_KEY, intervaloSegundos.toString()); }
+}});
+
+define({id: "9b20e331", inputs: ["Generators","ISS_API","intervaloSegundos"], outputs: ["MAX_HISTORIAL","estado"], body: (Generators,ISS_API,intervaloSegundos) => {
+// Generaador
+const MAX_HISTORIAL = 60;
+
+const estado = Generators.observe(notify => {
+  let activo = true;
+  let historial = [];
+  let contadorPolls = 0;
+
+  async function fetchPosicion() {
+    if (!activo) return;
+    try {
+      const respuesta = await fetch(ISS_API);
+      const datos = await respuesta.json();
+
+      const punto = {
+        timestamp: new Date(datos.timestamp * 1000),
+        latitud: datos.latitude,
+        longitud: datos.longitude,
+        altitud: datos.altitude,
+        velocidad: datos.velocity,
+        visibilidad: datos.visibility
+      };
+
+      historial.push(punto);
+      if (historial.length > MAX_HISTORIAL) historial.shift();
+
+      contadorPolls++;
+      notify({
+        actual: punto,
+        historial: [...historial],
+        error: null,
+        pollsRealizados: contadorPolls
+      });
+    } catch (e) {
+      notify({
+        actual: null,
+        historial: [...historial],
+        error: e.message,
+        pollsRealizados: contadorPolls
+      });
+    }
+  }
+
+  fetchPosicion();
+  const id = setInterval(fetchPosicion, intervaloSegundos * 1000);
+
+  return () => { activo = false; clearInterval(id); };
+});
+return {MAX_HISTORIAL,estado};
+}});
+
+define({id: "9bf3ab2e", inputs: ["display","html","estado"], body: (display,html,estado) => {
+// Panel
+display(html`<div style="font-family: monospace; padding: 1em; background: var(--theme-background-alt); border-radius: 6px;">
+  ${estado.actual ? html`
+    <strong>Latitud:</strong> ${estado.actual.latitud.toFixed(4)}°<br>
+    <strong>Longitud:</strong> ${estado.actual.longitud.toFixed(4)}°<br>
+    <strong>Altitud:</strong> ${estado.actual.altitud.toFixed(2)} km<br>
+    <strong>Velocidad:</strong> ${estado.actual.velocidad.toFixed(0)} km/h<br>
+    <strong>Visibilidad:</strong> ${estado.actual.visibilidad}<br>
+    <strong>Polls realizados:</strong> ${estado.pollsRealizados}<br>
+    <strong>Puntos en historial:</strong> ${estado.historial.length} / ${60}
+  ` : "Cargando primera lectura..."}
+  ${estado.error ? html`<br><span style="color: red;"><strong>Error:</strong> ${estado.error}</span>` : ""}
+</div>`);
+}});
+
+define({id: "bcd618d7", inputs: ["display","Plot","estado"], body: (display,Plot,estado) => {
+// MAPA DE TRAYECTORIA
+// Cada poll agrega un punto nuevo. El más reciente se resalta en rojo y los anteriores forman la "estela" de la trayectoria.
+display(Plot.plot({
+  width: 900,
+  height: 450,
+  projection: "equal-earth",
+  marks: [
+    // Contorno del mundo (placeholder simple usando una rejilla)
+    Plot.graticule(),
+    Plot.frame(),
+    // Trayectoria como línea conectada
+    estado.historial.length > 1 ? Plot.line(estado.historial, {
+      x: "longitud",
+      y: "latitud",
+      stroke: "#2196F3",
+      strokeWidth: 2,
+      strokeOpacity: 0.6
+    }) : null,
+    // Puntos del historial
+    Plot.dot(estado.historial.slice(0, -1), {
+      x: "longitud",
+      y: "latitud",
+      fill: "#2196F3",
+      r: 3,
+      fillOpacity: 0.5
+    }),
+    // Punto actual destacado
+    estado.actual ? Plot.dot([estado.actual], {
+      x: "longitud",
+      y: "latitud",
+      fill: "#F44336",
+      r: 8,
+      stroke: "white",
+      strokeWidth: 2
+    }) : null
+  ].filter(Boolean)
+}));
+}});
+
+define({id: "c00264ea", inputs: ["display","Plot","estado"], body: (display,Plot,estado) => {
+// Gráfica de longitud
+display(Plot.plot({
+  width: 900,
+  height: 300,
+  marginLeft: 60,
+  marginRight: 80,
+  grid: true,
+  y: { label: "Grados" },
+  x: { label: "Tiempo", type: "time" },
+  color: { legend: true, domain: ["Latitud", "Longitud"], range: ["#FF9800", "#9C27B0"] },
+  marks: [
+    Plot.ruleY([0]),
+    Plot.lineY(estado.historial, {
+      x: "timestamp",
+      y: "latitud",
+      stroke: "#FF9800",
+      strokeWidth: 2
+    }),
+    Plot.lineY(estado.historial, {
+      x: "timestamp",
+      y: "longitud",
+      stroke: "#9C27B0",
+      strokeWidth: 2
+    }),
+    Plot.dot(estado.historial.slice(-1), {
+      x: "timestamp",
+      y: "latitud",
+      fill: "#FF9800",
+      r: 5
+    }),
+    Plot.dot(estado.historial.slice(-1), {
+      x: "timestamp",
+      y: "longitud",
+      fill: "#9C27B0",
+      r: 5
+    })
+  ]
+}));
+}});
+
+define({id: "8ec9b63a", inputs: ["display","Inputs","estado"], body: (display,Inputs,estado) => {
+display(Inputs.table(estado.historial.slice().reverse().slice(0, 10), {
+  columns: ["timestamp", "latitud", "longitud", "altitud", "velocidad"],
+  header: {
+    timestamp: "Hora",
+    latitud: "Latitud (°)",
+    longitud: "Longitud (°)",
+    altitud: "Altitud (km)",
+    velocidad: "Velocidad (km/h)"
+  },
+  format: {
+    timestamp: d => d.toLocaleTimeString(),
+    latitud: d => d.toFixed(4),
+    longitud: d => d.toFixed(4),
+    altitud: d => d.toFixed(2),
+    velocidad: d => d.toFixed(0)
+  }
+}));
+}});
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="./">Pruebas de consumo de APIs</a></li>
+  </ol>
+  <ol>
+    <li class="observablehq-link"><a href="./prueba-binance">Polling en tiempo real con Binance</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./prueba-ISS">Posición de la ISS en tiempo real</a></li>
+    <li class="observablehq-link"><a href="./prueba-restcountries">REST Countries</a></li>
+    <li class="observablehq-link"><a href="./prueba-vizcanvas">Vizcanvas</a></li>
+  </ol>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="posicion-de-la-iss-en-tiempo-real" tabindex="-1"><a class="observablehq-header-anchor" href="#posicion-de-la-iss-en-tiempo-real">Posición de la ISS en tiempo real</a></h1>
+<h3 id="descripcion" tabindex="-1"><a class="observablehq-header-anchor" href="#descripcion">Descripción</a></h3>
+<p>Se consulta la API pública de <a href="https://wheretheiss.at" target="_blank" rel="noopener noreferrer">Where The ISS At?</a> para obtener la posición
+actual de la Estación Espacial Internacional, que orbita la Tierra a <strong>7.66 km/s</strong></p>
+<h3 id="caracteriosticas" tabindex="-1"><a class="observablehq-header-anchor" href="#caracteriosticas">Caracteríosticas</a></h3>
+<p>API: Where The ISS At: pública, sin autenticación, HTTPS, sin rate limits estrictos.</p>
+<div class="observablehq observablehq--block"><!--:8cb7816f:--></div>
+<div class="observablehq observablehq--block"><!--:283ca175:--></div>
+<div class="observablehq observablehq--block"><!--:9b20e331:--></div>
+<div class="observablehq observablehq--block"><!--:9bf3ab2e:--></div>
+<div class="observablehq observablehq--block"><!--:bcd618d7:--></div>
+<div class="observablehq observablehq--block"><!--:c00264ea:--></div>
+<div class="observablehq observablehq--block"><!--:8ec9b63a:--></div>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./prueba-binance"><span>Polling en tiempo real con Binance</span></a><a rel="next" href="./prueba-restcountries"><span>REST Countries</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2026-06-05T07:39:53">Jun 5, 2026</a>.</div>
+</footer>
+</div>
+</body>
+</html>
