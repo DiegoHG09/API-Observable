@@ -61,25 +61,24 @@
 
 import {define} from "./_observablehq/client.0f01a480.js";
 
-define({id: "f086e1a2", outputs: ["binanceConfig"], body: async () => {
+define({id: "c88e12f7", outputs: ["binanceConfig"], body: async () => {
 const {binanceConfig} = await import("./_import/config/binance.6c31974e.js");
+// url, símbolos e intervalos viven en config aparte
 
 return {binanceConfig};
 }});
 
-define({id: "66a9b717", inputs: ["localStorage","binanceConfig","view","Inputs"], outputs: ["LS_KEY","valorGuardado","intervaloInicial","intervaloSegundos"], body: (localStorage,binanceConfig,view,Inputs) => {
-// PERSISTENCIA EN LOCALSTORAGE — Lectura del valor guardado al cargar
-// Usamos una "llave" para identificar este valor específicamente.
-// La llave es arbitraria pero conviene usar un formato como
-// "namespace.variable" para evitar colisiones si en el futuro
-// guardamos más cosas.
+define({id: "d1c79ab0", inputs: ["localStorage","binanceConfig","view","Inputs"], outputs: ["LS_KEY","valorGuardado","intervaloInicial","intervaloSegundos"], body: (localStorage,binanceConfig,view,Inputs) => {
+// recordamos el intervalo elegido entre recargas con localStorage
 const LS_KEY = "binance.intervaloSegundos";
 
+// localStorage guarda strings (o null la 1ra vez) -> parseamos o usamos el default
 const valorGuardado = localStorage.getItem(LS_KEY);
 const intervaloInicial = valorGuardado !== null
   ? parseFloat(valorGuardado)
   : binanceConfig.intervalo.default;
 
+// view() mostramos el slider y expone su valor como variable reactiva a la vez
 const intervaloSegundos = view(Inputs.range(
   [binanceConfig.intervalo.min, binanceConfig.intervalo.max],
   {
@@ -91,21 +90,20 @@ const intervaloSegundos = view(Inputs.range(
 return {LS_KEY,valorGuardado,intervaloInicial,intervaloSegundos};
 }});
 
-define({id: "bbed5cbf", inputs: ["localStorage","LS_KEY","intervaloSegundos"], body: (localStorage,LS_KEY,intervaloSegundos) => {
-// PERSISTENCIA EN LOCALSTORAGE — Escritura cuando cambia el slider
-// Esta celda depende de intervaloSegundos. Cada cambio del slider
-// guarda el nuevo valor en localStorage. localStorage solo acepta
-// strings, por eso convertimos el número con toString().
+define({id: "ffb5ae72", inputs: ["localStorage","LS_KEY","intervaloSegundos"], body: (localStorage,LS_KEY,intervaloSegundos) => {
+// guarda el valor cada vez que se mueve el slider (toString xq localStorage es string)
 {
   localStorage.setItem(LS_KEY, intervaloSegundos.toString());
 }
 }});
 
-define({id: "ca85dec3", inputs: ["Generators","binanceConfig","intervaloSegundos"], outputs: ["estado"], body: (Generators,binanceConfig,intervaloSegundos) => {
-// Generador
+define({id: "883b579f", inputs: ["Generators","binanceConfig","intervaloSegundos"], outputs: ["estado"], body: (Generators,binanceConfig,intervaloSegundos) => {
+// pide precios a Binance cada N seg y publica el estado con notify().
+// cada notify() refresca el panel, la tabla y la gráfica.
+// `estado.datos` es lo único que consumen las vistas -> es el dato a exponer
 const estado = Generators.observe(notify => {
   let activo = true;
-  let datosAnteriores = null;
+  let datosAnteriores = null;   // para sacar el cambio contra el poll anterior
   let contadorPolls = 0;
 
   async function fetchDatos() {
@@ -113,6 +111,8 @@ const estado = Generators.observe(notify => {
     try {
       const respuesta = await fetch(binanceConfig.apiUrl);
       const todos = await respuesta.json();
+      // Binance regresa todos los pares; filtramos los de la config
+      // TODO: pedir solo los nuestros con ?symbols= para no bajar todo
       const filtrados = todos
         .filter(t => binanceConfig.simbolos.includes(t.symbol))
         .map(t => {
@@ -134,6 +134,7 @@ const estado = Generators.observe(notify => {
         pollsRealizados: contadorPolls
       });
     } catch (e) {
+      // si truena la red, publicamos el error en vez de romper la página
       notify({
         datos: [],
         error: e.message,
@@ -143,16 +144,18 @@ const estado = Generators.observe(notify => {
     }
   }
 
-  fetchDatos();
+  fetchDatos();   // primera llamada ya, sin esperar el intervalo
   const id = setInterval(fetchDatos, intervaloSegundos * 1000);
 
+  // al mover el slider esta celda se rehace: hay que "matar" el interval viejo
+  // o se van acumulando y acabas con varios polls corriendo a la vez
   return () => { activo = false; clearInterval(id); };
 });
 return {estado};
 }});
 
-define({id: "c32a858f", inputs: ["display","html","estado","intervaloSegundos","binanceConfig"], body: (display,html,estado,intervaloSegundos,binanceConfig) => {
-// Paneel de estado
+define({id: "d5e2d419", inputs: ["display","html","estado","intervaloSegundos","binanceConfig"], body: (display,html,estado,intervaloSegundos,binanceConfig) => {
+// panel de estado, solo lee de `estado`
 display(html`<div style="font-family: monospace; padding: 1em; background: var(--theme-background-alt); border-radius: 6px;">
   <strong>Última actualización:</strong> ${estado.ultima?.toLocaleTimeString() ?? "cargando..."}<br>
   <strong>Polls realizados:</strong> ${estado.pollsRealizados}<br>
@@ -162,11 +165,8 @@ display(html`<div style="font-family: monospace; padding: 1em; background: var(-
 </div>`);
 }});
 
-define({id: "ed5b2c52", inputs: ["display","Inputs","estado","html"], body: (display,Inputs,estado,html) => {
-// TABLA CON COMPARACIÓN ANTES/DESPUÉS
-// Esta es la prueba más clara de que los datos son reales y en vivo:
-// muestra el precio anterior, el actual y el cambio entre ambos.
-// Si los datos fueran estáticos, la columna de cambio sería siempre 0.
+define({id: "9f443ca4", inputs: ["display","Inputs","estado","html"], body: (display,Inputs,estado,html) => {
+// tabla que muestra los cambios anterior vs actual
 display(Inputs.table(estado.datos, {
   columns: ["simbolo", "precioAnterior", "precio", "cambio"],
   header: {
@@ -188,8 +188,9 @@ display(Inputs.table(estado.datos, {
 }));
 }});
 
-define({id: "4d6a9ba7", inputs: ["display","Plot","estado"], body: (display,Plot,estado) => {
-// Gráfica en escala logarítmica
+define({id: "1c6a5390", inputs: ["display","Plot","estado"], body: (display,Plot,estado) => {
+// escala log en x: van de centavos a decenas de miles ya que si lo hacemos
+// en lineal, los más bajos no se apreciarína
 display(Plot.plot({
   marginLeft: 100,
   marginRight: 100,
@@ -250,21 +251,22 @@ display(Plot.plot({
 Se consulta la API REST de Binance cada N segundos configurable por el usuario desde un slider (por el momento) para obtener precios actuales de criptomonedas. Esta prueba <strong>demuestra que Observable puede mostrar datos que cambian constantemente sin recargar la página ni reconstruir el sitio</strong>. Como nota adicional: <em>El intervalo de actualización se persiste localmente en el browser mediante localStorage.</em></p>
 <h4 id="caracteristicas" tabindex="-1"><a class="observablehq-header-anchor" href="#caracteristicas">Características</a></h4>
 <p>API: Binance REST API — pública, sin autenticación, HTTPS.</p>
-<div class="observablehq observablehq--block"><!--:f086e1a2:--></div>
-<div class="observablehq observablehq--block"><!--:66a9b717:--></div>
-<div class="observablehq observablehq--block"><!--:bbed5cbf:--></div>
-<div class="observablehq observablehq--block"><!--:ca85dec3:--></div>
-<div class="observablehq observablehq--block"><!--:c32a858f:--></div>
-<div class="observablehq observablehq--block"><!--:ed5b2c52:--></div>
-<div class="observablehq observablehq--block"><!--:4d6a9ba7:--></div>
+<div class="observablehq observablehq--block"><!--:c88e12f7:--></div>
+<div class="observablehq observablehq--block"><!--:d1c79ab0:--></div>
+<div class="observablehq observablehq--block"><!--:ffb5ae72:--></div>
+<div class="observablehq observablehq--block"><!--:883b579f:--></div>
+<div class="observablehq observablehq--block"><!--:d5e2d419:--></div>
+<div class="observablehq observablehq--block"><!--:9f443ca4:--></div>
+<div class="observablehq observablehq--block"><!--:1c6a5390:--></div>
 <style>
   .observablehq--block {
     max-width: 100%;
   }
-</style></main>
+</style>
+</main>
 <footer id="observablehq-footer">
 <nav><a rel="prev" href="./"><span>Pruebas de consumo de APIs</span></a><a rel="next" href="./prueba-ISS"><span>Posición de la ISS en tiempo real</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2026-06-16T20:23:15">Jun 16, 2026</a>.</div>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2026-06-16T21:01:33">Jun 16, 2026</a>.</div>
 </footer>
 </div>
 </body>

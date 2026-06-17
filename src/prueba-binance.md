@@ -12,24 +12,22 @@ Se consulta la API REST de Binance cada N segundos configurable por el usuario d
 #### Características 
 API: Binance REST API — pública, sin autenticación, HTTPS.
 
-
 ```js
+// url, símbolos e intervalos viven en config aparte
 import {binanceConfig} from "./config/binance.js";
 ```
 
 ```js
-// PERSISTENCIA EN LOCALSTORAGE — Lectura del valor guardado al cargar
-// Usamos una "llave" para identificar este valor específicamente.
-// La llave es arbitraria pero conviene usar un formato como
-// "namespace.variable" para evitar colisiones si en el futuro
-// guardamos más cosas.
+// recordamos el intervalo elegido entre recargas con localStorage
 const LS_KEY = "binance.intervaloSegundos";
 
+// localStorage guarda strings (o null la 1ra vez) -> parseamos o usamos el default
 const valorGuardado = localStorage.getItem(LS_KEY);
 const intervaloInicial = valorGuardado !== null
   ? parseFloat(valorGuardado)
   : binanceConfig.intervalo.default;
 
+// view() mostramos el slider y expone su valor como variable reactiva a la vez
 const intervaloSegundos = view(Inputs.range(
   [binanceConfig.intervalo.min, binanceConfig.intervalo.max],
   {
@@ -41,20 +39,19 @@ const intervaloSegundos = view(Inputs.range(
 ```
 
 ```js
-// PERSISTENCIA EN LOCALSTORAGE — Escritura cuando cambia el slider
-// Esta celda depende de intervaloSegundos. Cada cambio del slider
-// guarda el nuevo valor en localStorage. localStorage solo acepta
-// strings, por eso convertimos el número con toString().
+// guarda el valor cada vez que se mueve el slider (toString xq localStorage es string)
 {
   localStorage.setItem(LS_KEY, intervaloSegundos.toString());
 }
 ```
 
 ```js
-// Generador
+// pide precios a Binance cada N seg y publica el estado con notify().
+// cada notify() refresca el panel, la tabla y la gráfica.
+// `estado.datos` es lo único que consumen las vistas -> es el dato a exponer
 const estado = Generators.observe(notify => {
   let activo = true;
-  let datosAnteriores = null;
+  let datosAnteriores = null;   // para sacar el cambio contra el poll anterior
   let contadorPolls = 0;
 
   async function fetchDatos() {
@@ -62,6 +59,8 @@ const estado = Generators.observe(notify => {
     try {
       const respuesta = await fetch(binanceConfig.apiUrl);
       const todos = await respuesta.json();
+      // Binance regresa todos los pares; filtramos los de la config
+      // TODO: pedir solo los nuestros con ?symbols= para no bajar todo
       const filtrados = todos
         .filter(t => binanceConfig.simbolos.includes(t.symbol))
         .map(t => {
@@ -83,6 +82,7 @@ const estado = Generators.observe(notify => {
         pollsRealizados: contadorPolls
       });
     } catch (e) {
+      // si truena la red, publicamos el error en vez de romper la página
       notify({
         datos: [],
         error: e.message,
@@ -92,15 +92,17 @@ const estado = Generators.observe(notify => {
     }
   }
 
-  fetchDatos();
+  fetchDatos();   // primera llamada ya, sin esperar el intervalo
   const id = setInterval(fetchDatos, intervaloSegundos * 1000);
 
+  // al mover el slider esta celda se rehace: hay que "matar" el interval viejo
+  // o se van acumulando y acabas con varios polls corriendo a la vez
   return () => { activo = false; clearInterval(id); };
 });
 ```
 
 ```js
-// Paneel de estado
+// panel de estado, solo lee de `estado`
 display(html`<div style="font-family: monospace; padding: 1em; background: var(--theme-background-alt); border-radius: 6px;">
   <strong>Última actualización:</strong> ${estado.ultima?.toLocaleTimeString() ?? "cargando..."}<br>
   <strong>Polls realizados:</strong> ${estado.pollsRealizados}<br>
@@ -111,10 +113,7 @@ display(html`<div style="font-family: monospace; padding: 1em; background: var(-
 ```
 
 ```js
-// TABLA CON COMPARACIÓN ANTES/DESPUÉS
-// Esta es la prueba más clara de que los datos son reales y en vivo:
-// muestra el precio anterior, el actual y el cambio entre ambos.
-// Si los datos fueran estáticos, la columna de cambio sería siempre 0.
+// tabla que muestra los cambios anterior vs actual
 display(Inputs.table(estado.datos, {
   columns: ["simbolo", "precioAnterior", "precio", "cambio"],
   header: {
@@ -137,7 +136,8 @@ display(Inputs.table(estado.datos, {
 ```
 
 ```js
-// Gráfica en escala logarítmica
+// escala log en x: van de centavos a decenas de miles ya que si lo hacemos
+// en lineal, los más bajos no se apreciarína
 display(Plot.plot({
   marginLeft: 100,
   marginRight: 100,
