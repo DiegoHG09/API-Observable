@@ -15,7 +15,7 @@
 <link rel="modulepreload" href="./_observablehq/client.0f01a480.js">
 <link rel="modulepreload" href="./_observablehq/runtime.607a8173.js">
 <link rel="modulepreload" href="./_observablehq/stdlib.277aeab8.js">
-<link rel="modulepreload" href="./_import/config/binance.78cb4514.js">
+<link rel="modulepreload" href="./_import/config/binance.6c31974e.js">
 <link rel="modulepreload" href="./_npm/htl@1.0.0/87d6f6ef.js">
 <link rel="modulepreload" href="./_observablehq/stdlib/inputs.3feeafb9.js">
 <link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.17/a96a6bbb.js">
@@ -62,7 +62,7 @@
 import {define} from "./_observablehq/client.0f01a480.js";
 
 define({id: "f086e1a2", outputs: ["binanceConfig"], body: async () => {
-const {binanceConfig} = await import("./_import/config/binance.78cb4514.js");
+const {binanceConfig} = await import("./_import/config/binance.6c31974e.js");
 
 return {binanceConfig};
 }});
@@ -232,8 +232,6 @@ display(Plot.plot({
   <ol>
     <li class="observablehq-link observablehq-link-active"><a href="./prueba-binance">Polling en tiempo real con Binance</a></li>
     <li class="observablehq-link"><a href="./prueba-ISS">Posición de la ISS en tiempo real</a></li>
-    <li class="observablehq-link"><a href="./prueba-restcountries">REST Countries</a></li>
-    <li class="observablehq-link"><a href="./prueba-vizcanvas">Vizcanvas</a></li>
   </ol>
 </nav>
 <script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
@@ -266,7 +264,7 @@ Se consulta la API REST de Binance cada N segundos configurable por el usuario d
 </style></main>
 <footer id="observablehq-footer">
 <nav><a rel="prev" href="./"><span>Pruebas de consumo de APIs</span></a><a rel="next" href="./prueba-ISS"><span>Posición de la ISS en tiempo real</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2026-06-05T07:39:53">Jun 5, 2026</a>.</div>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2026-06-16T20:23:15">Jun 16, 2026</a>.</div>
 </footer>
 </div>
 </body>
