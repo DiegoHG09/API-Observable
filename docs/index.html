@@ -37,82 +37,42 @@ import "./_observablehq/client.0f01a480.js";
 <div id="observablehq-center">
 <main id="observablehq-main" class="observablehq">
 <div class="hero">
-  <h1>Consumo de APIs en Observable Framework</h1>
-  <h2>En este sitio documentamos las pruebas de integración entre Observable Framework y APIs externas, incluyendo VizCanvas, Binance y REST Countries.</h2>
+  <h1>API-Observable</h1>
+  <h2>Pruebas de consumo de APIs externas con Observable Framework</h2>
 </div>
-<h2 id="contexto" tabindex="-1"><a class="observablehq-header-anchor" href="#contexto">Contexto</a></h2>
-<hr>
-<h2 id="next-steps" tabindex="-1"><a class="observablehq-header-anchor" href="#next-steps">Next steps</a></h2>
-<p>Here are some ideas of things you could try…</p>
-<div class="grid grid-cols-4">
+<h2 id="que-es-esto" tabindex="-1"><a class="observablehq-header-anchor" href="#que-es-esto">¿Qué es esto?</a></h2>
+<p>Este sitio documenta las pruebas de integración entre <strong>Observable Framework</strong> y APIs externas
+con datos en tiempo real. El objetivo es evaluar la viabilidad del framework como capa de
+visualización para el proyecto de análisis de datos del grupo.</p>
+<h2 id="pruebas-disponibles" tabindex="-1"><a class="observablehq-header-anchor" href="#pruebas-disponibles">Pruebas disponibles</a></h2>
+<div class="grid grid-cols-2">
   <div class="card">
-    Chart your own data using <a href="https://observablehq.com/framework/lib/plot" target="_blank" rel="noopener noreferrer"><code>Plot</code></a> and <a href="https://observablehq.com/framework/files" target="_blank" rel="noopener noreferrer"><code>FileAttachment</code></a>. Make it responsive using <a href="https://observablehq.com/framework/javascript#resize(render)" target="_blank" rel="noopener noreferrer"><code>resize</code></a>.
+    <h2>Binance — Precios en vivo</h2>
+    <p>Polling automático de precios de criptomonedas. Demuestra actualización reactiva 
+    de tabla y gráfica sin recargar la página.</p>
+    <a href="./prueba-binance">Ver prueba →</a>
   </div>
   <div class="card">
-    Create a <a href="https://observablehq.com/framework/project-structure" target="_blank" rel="noopener noreferrer">new page</a> by adding a Markdown file (<code>whatever.md</code>) to the <code>src</code> folder.
-  </div>
-  <div class="card">
-    Add a drop-down menu using <a href="https://observablehq.com/framework/inputs/select" target="_blank" rel="noopener noreferrer"><code>Inputs.select</code></a> and use it to filter the data shown in a chart.
-  </div>
-  <div class="card">
-    Write a <a href="https://observablehq.com/framework/loaders" target="_blank" rel="noopener noreferrer">data loader</a> that queries a local database or API, generating a data snapshot on build.
-  </div>
-  <div class="card">
-    Import a <a href="https://observablehq.com/framework/imports" target="_blank" rel="noopener noreferrer">recommended library</a> from npm, such as <a href="https://observablehq.com/framework/lib/leaflet" target="_blank" rel="noopener noreferrer">Leaflet</a>, <a href="https://observablehq.com/framework/lib/dot" target="_blank" rel="noopener noreferrer">GraphViz</a>, <a href="https://observablehq.com/framework/lib/tex" target="_blank" rel="noopener noreferrer">TeX</a>, or <a href="https://observablehq.com/framework/lib/duckdb" target="_blank" rel="noopener noreferrer">DuckDB</a>.
-  </div>
-  <div class="card">
-    Ask for help, or share your work or ideas, on our <a href="https://github.com/observablehq/framework/discussions" target="_blank" rel="noopener noreferrer">GitHub discussions</a>.
-  </div>
-  <div class="card">
-    Visit <a href="https://github.com/observablehq/framework" target="_blank" rel="noopener noreferrer">Framework on GitHub</a> and give us a star. Or file an issue if you’ve found a bug!
+    <h2>ISS — Posición en tiempo real</h2>
+    <p>Tracking en vivo de la Estación Espacial Internacional. 
+    La posición cambia ~23 km entre cada poll de 3 segundos.</p>
+    <a href="./prueba-ISS">Ver prueba →</a>
   </div>
 </div>
-<style>
-
-.hero {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-family: var(--sans-serif);
-  margin: 4rem 0 8rem;
-  text-wrap: balance;
-  text-align: center;
-}
-
-.hero h1 {
-  margin: 1rem 0;
-  padding: 1rem 0;
-  max-width: none;
-  font-size: 14vw;
-  font-weight: 900;
-  line-height: 1;
-  background: linear-gradient(30deg, var(--theme-foreground-focus), currentColor);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.hero h2 {
-  margin: 0;
-  max-width: 34em;
-  font-size: 20px;
-  font-style: initial;
-  font-weight: 500;
-  line-height: 1.5;
-  color: var(--theme-foreground-muted);
-}
-
-@media (min-width: 640px) {
-  .hero h1 {
-    font-size: 90px;
-  }
-}
-
-</style>
+<h2 id="hallazgos-clave" tabindex="-1"><a class="observablehq-header-anchor" href="#hallazgos-clave">Hallazgos clave</a></h2>
+<ul>
+<li><strong>APIs HTTPS funcionan en producción</strong> sin restricciones desde el browser</li>
+<li><strong>APIs HTTP quedan bloqueadas</strong> desde sitios HTTPS por política del browser (Mixed Content) — no es una limitación de Observable</li>
+<li><strong>El polling reactivo</strong> actualiza visualizaciones automáticamente sin rebuild ni recarga</li>
+<li><strong>Configuración separada del código</strong> permite ajustar parámetros sin reconstruir el sitio</li>
+</ul>
+<h2 id="repositorio" tabindex="-1"><a class="observablehq-header-anchor" href="#repositorio">Repositorio</a></h2>
+<p>Código fuente disponible en
+<a href="https://github.com/socialdataibero/api-obs-poc" target="_blank" rel="noopener noreferrer">github.com/socialdataibero/api-obs-poc</a></p>
 </main>
 <footer id="observablehq-footer">
 <nav><a rel="next" href="./prueba-binance"><span>Polling en tiempo real con Binance</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2026-06-16T21:11:25">Jun 16, 2026</a>.</div>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2026-06-16T21:25:26">Jun 16, 2026</a>.</div>
 </footer>
 </div>
 </body>
